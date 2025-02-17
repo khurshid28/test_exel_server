@@ -1,6 +1,9 @@
 const express = require("express");
 const multer = require("multer");
 const path = require("path");
+
+
+const PORT = process.env.PORT || 3000;
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, path.join(__dirname, "/uploads"));
@@ -25,7 +28,7 @@ const upload = multer({
 
 const app = express();
 
-app.post("/upload-exel", upload.single("file"), function (req, res, next) {
+app.post("/upload-excel", upload.single("file"), function (req, res, next) {
     console.log("File successfully uploaded");
 
   res.send({
@@ -33,6 +36,6 @@ app.post("/upload-exel", upload.single("file"), function (req, res, next) {
   })
 });
 
-app.listen(3001, () => {
+app.listen(PORT, () => {
   console.log("App listen on 3001");
 });
